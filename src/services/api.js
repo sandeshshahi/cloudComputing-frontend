@@ -56,9 +56,7 @@ export const uploadImage = async (file, email, token) => {
     await uploadToS3(uploadURL, file);
 
     // Step 3: Save the image URL in DynamoDB
-    const imageUrl = `https://${
-      import.meta.env.VITE_S3_BUCKET
-    }.s3.us-east-2.amazonaws.com/${filePath}`;
+    const imageUrl = `https://bucket-for-profile-images.s3.us-east-2.amazonaws.com/${filePath}`;
     await updateProfileImage(email, imageUrl, token);
 
     return { status: 200, imageUrl };
