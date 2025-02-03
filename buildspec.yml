@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - npm run build
-  post_build:
-    commands:
-      - aws s3 sync dist/ s3://my-frontend-bucket-finalproject  --delete
-      - aws cloudfront create-invalidation --distribution-id EWT4OLTFNB0GM --paths "/*"
+  artifacts:
+    files:
+      - "**/*"
+    base-directory: /dist # Directory with output files (e.g., React app)
