@@ -6,7 +6,7 @@ import UploadImage from "./components/uploadImage";
 
 function App() {
   return (
-    <>
+    <div className="h-full w-full">
       <Router>
         <Routes>
           <Route path="/" element={<Signup />} />
@@ -15,7 +15,7 @@ function App() {
           <Route path="/upload-image" element={<UploadImage />} />
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 

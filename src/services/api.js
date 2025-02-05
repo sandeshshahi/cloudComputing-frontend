@@ -48,18 +48,19 @@ export const uploadImage = async (file, email, token) => {
     const filename = file.name;
     const contentType = file.type;
 
-    // Step 1: Get a pre-signed URL
+    // Get a pre-signed URL
     const response = await getPresignedUrl(filename, contentType, email, token);
+    console.log("filename:", filename);
     const { uploadURL, filePath } = response.data;
 
-    // Step 2: Upload the image to S3
+    // Upload the image to S3
     await uploadToS3(uploadURL, file);
 
-    // Step 3: Save the image URL in DynamoDB
-    const imageUrl = `https://bucket-for-profile-images.s3.us-east-2.amazonaws.com/${filePath}`;
-    await updateProfileImage(email, imageUrl, token);
+    // Save the image URL in DynamoDB
+    // const imageUrl = `https://bucket-for-profile-images.s3.us-east-2.amazonaws.com/${filePath}`;
+    await updateProfileImage(email, filePath, token);
 
-    return { status: 200, imageUrl };
+    return { status: 200, imageUrl: filePath };
   } catch (error) {
     console.error("Error uploading file:", error);
     return { status: 500, error: error.message };

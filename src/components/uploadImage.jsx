@@ -21,6 +21,7 @@ const UploadImage = () => {
 
     try {
       const response = await uploadImage(file, email, token);
+      console.log("upload response:", response);
 
       if (response.status === 200) {
         setMessage("Upload successful!");
