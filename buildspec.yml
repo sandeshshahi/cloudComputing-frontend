@@ -9,6 +9,12 @@ phases:
   build:
     commands:
       - npm run build # Builds the project
+  post_build:
+    commands:
+      - aws s3 rm s3://my-frontend-bucket-finalproject --recursive
+      - aws s3 cp dist/ s3://my-frontend-bucket-finalproject --recursive
+      - aws cloudfront create-invalidation --distribution-id E1D6NO75RBK3F8 --paths "/*"
+
 artifacts:
   files:
     - "**/*"
