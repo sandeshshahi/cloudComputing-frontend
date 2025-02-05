@@ -58,6 +58,7 @@ export const uploadImage = async (file, email, token) => {
 
     // Save the image URL in DynamoDB
     // const imageUrl = `https://bucket-for-profile-images.s3.us-east-2.amazonaws.com/${filePath}`;
+    //just add filePath to imageUrl
     await updateProfileImage(email, filePath, token);
 
     return { status: 200, imageUrl: filePath };
