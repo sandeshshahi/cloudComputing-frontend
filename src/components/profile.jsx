@@ -29,10 +29,12 @@ const Profile = () => {
   return profile ? (
     <div className="px-auto flex items-center justify-center flex-col h-full gap-y-8 py-10">
       <div className="text-3xl">
-        <h2>Profile</h2>
+        <h2 className="text-gray-500 font-bold">Profile</h2>
       </div>
-      <p>Email: {profile.email}</p>
-      <p>Name: {profile.name}</p>
+      <p className="text-gray-500 font-semibold">Email: {profile.email}</p>
+      <p className="text-gray-500 font-semibold capitalize">
+        Name: {profile.name}
+      </p>
 
       {profile.profileImageUrl ? (
         <img
